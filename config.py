@@ -1,4 +1,4 @@
-
+DATA_DIR = "dataset_pil"
 BATCH_SIZE  = 16
 IMAGE_WIDTH = 300
 IMAGE_HEIGHT = 80
