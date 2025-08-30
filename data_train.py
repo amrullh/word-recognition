@@ -36,7 +36,7 @@ def ctc_collate_(batch):
     images = torch.stack([b['images']for b in batch])
     targets = [b['targets'] for b in batch]
     targets_lengths = torch.tensor([b['target_length'] for b in batch], dtype=torch.long)
-    targets_padded = pad_sequence(targets, batch_first = true, padding_value = 0)
+    targets_padded = pad_sequence(targets, batch_first = True, padding_value = 0)
     return{
         "images":images,
         "targets":targets_padded,

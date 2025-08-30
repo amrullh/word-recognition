@@ -9,35 +9,35 @@ class model_wordRec(nn.Module):
         
         self.cnn = nn.Sequential(
             nn.Conv2d(img_channels, 64, 3, 1, 1),
-            nn.Relu(True),
+            nn.ReLU(True),
             nn.MaxPool2d(2, 2), 
 
             nn.Conv2d(64, 128, 3, 1, 1),
-            nn.Relu(True),
-            nn.Maxpool2d(2, 2),
+            nn.ReLU(True),
+            nn.MaxPool2d(2, 2),
 
             nn.Conv2d(128, 256, 3, 1, 1),
-            nn.Relu(True),
+            nn.ReLU(True),
             nn.Conv2d(256, 256, 3, 1, 1),
-            nn.Relu(True),
+            nn.ReLU(True),
             nn.MaxPool2d((2, 1), (2, 1)),
 
             nn.Conv2d(256, 512, 3, 1, 1),
             nn.BatchNorm2d(512),
-            nn.Relu(True),
+            nn.ReLU(True),
             nn.Conv2d(512, 512, 3, 1, 1),
             nn.BatchNorm2d(512),
-            nn.Relu(True),
+            nn.ReLU(True),
             nn.MaxPool2d((2, 1), (2, 1)),
 
             nn.Conv2d(512, 512, 2, 1, 0),
-            nn.Relu(True)
+            nn.ReLU(True)
         )
 
         self.rnn = nn.Sequential(
-            nn.LSTM(512, hidden_state, biderectional = True, num_layers = 2, batch_first = False)    
+            nn.LSTM(2048, hidden_state, bidirectional = True, num_layers = 2, batch_first = False)    
         )
-        self.embedding = nn.Linear(nh *2, nclass)
+        self.embedding = nn.Linear(hidden_state *2, num_classes)
 
     def forward(self, x):
 
